@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zomato Style Search</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: url('https://images.unsplash.com/photo-1555992336-03a23c9ff027?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      padding: 40px;
+      text-align: center;
+      margin: 0;
+      height: 100vh;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 56, 92, 0.7); /* Zomato pink */
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1; /* above overlay */
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      color: #333;
+    }
+
+    #searchBox {
+      padding: 12px;
+      width: 80%;
+      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      width: 200px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      margin: 10px;
+      font-size: 18px;
+    }
+    
+    .price {
+      margin: 0 10px 15px 10px;
+      font-weight: bold;
+      color: #e53935;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Search for Dishes</h1>
+    <input type="text" id="searchBox" placeholder="Type a dish name..." />
+    
+    <div id="cardContainer" class="card-container"></div>
+  </div>
+
+  <script>
+    const items = [
+      { name: "Pizza", image: "https://tse1.mm.bing.net/th?id=OIP.T03aJagv5g4JwoG0Di4gFwHaEb&pid=Api", price: "₹499" },
+      { name: "Burger", image: "https://cdn2.tmbi.com/TOH/Images/Photos/37/1200x1200/exps28800_UG143377D12_18_1b_RMS.jpg", price: "₹199" },
+      { name: "Pasta", image: "https://www.jocooks.com/wp-content/uploads/2018/12/creamy-tomato-chicken-pasta-1-20.jpg", price: "₹349" },
+      { name: "Biryani", image: "https://tse2.mm.bing.net/th?id=OIP.FPuP3QNkURKQqGMi9VkeZQHaE8&pid=Api&P=0&h=220", price: "₹299" },
+      { name: "Ice Cream", image: "https://www.onceuponachef.com/images/2022/08/homemade-chocolate-ice-cream.jpg", price: "₹149" },
+      { name: "Fried Chicken", image: "https://www.tasteofhome.com/wp-content/uploads/2018/01/Crispy-Fried-Chicken_EXPS_TOHJJ22_6445_DR-_02_03_11b-4.jpg", price: "₹399" }
+    ];
+
+    const searchBox = document.getElementById("searchBox");
+    const cardContainer = document.getElementById("cardContainer");
+
+    function displayItems(filteredItems) {
+      cardContainer.innerHTML = '';
+      if (filteredItems.length === 0) {
+        cardContainer.innerHTML = '<p>No items found</p>';
+        return;
+      }
+
+      filteredItems.forEach(item => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <h3>${item.name}</h3>
+          <p class="price">${item.price}</p>
+        `;
+        cardContainer.appendChild(card);
+      });
+    }
+
+  
+    displayItems(items);
+
+  
+    searchBox.addEventListener("input", () => {
+      const query = searchBox.value.toLowerCase();
+      const filtered = items.filter(item =>
+        item.name.toLowerCase().includes(query)
+      );
+      displayItems(filtered);
+    });
+  </script>
+
+</body>
+</html>
