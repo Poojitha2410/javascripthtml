@@ -1,0 +1,135 @@
+<html>
+<head>
+  
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eaeaea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculator {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    .display {
+      background: #000;
+      color: #0f0;
+      font-size: 2em;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      text-align: right;
+      min-width: 250px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      background-color: #444;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.2em;
+    }
+
+    .btn.operator {
+      background-color: orange;
+    }
+
+    .btn.clear {
+      background-color: red;
+    }
+
+    .btn.equal {
+      background-color: green;
+      flex: 2;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <div id="display" class="display">0</div>
+
+    <div class="row">
+      <div class="btn clear" onclick="clearDisplay()">C</div>
+      <div class="btn" onclick="appendValue('(')">(</div>
+      <div class="btn" onclick="appendValue(')')">)</div>
+      <div class="btn operator" onclick="appendValue('/')">÷</div>
+    </div>
+
+    <div class="row">
+      <div class="btn" onclick="appendValue('7')">7</div>
+      <div class="btn" onclick="appendValue('8')">8</div>
+      <div class="btn" onclick="appendValue('9')">9</div>
+      <div class="btn operator" onclick="appendValue('*')">×</div>
+    </div>
+
+    <div class="row">
+      <div class="btn" onclick="appendValue('4')">4</div>
+      <div class="btn" onclick="appendValue('5')">5</div>
+      <div class="btn" onclick="appendValue('6')">6</div>
+      <div class="btn operator" onclick="appendValue('-')">−</div>
+    </div>
+
+    <div class="row">
+      <div class="btn" onclick="appendValue('1')">1</div>
+      <div class="btn" onclick="appendValue('2')">2</div>
+      <div class="btn" onclick="appendValue('3')">3</div>
+      <div class="btn operator" onclick="appendValue('+')">+</div>
+    </div>
+
+    <div class="row">
+      <div class="btn" onclick="appendValue('0')">0</div>
+      <div class="btn" onclick="appendValue('.')">.</div>
+      <div class="btn equal" onclick="calculate()">=</div>
+    </div>
+
+  </div>
+
+  <script>
+    let display = document.getElementById("display");
+
+    function appendValue(value) {
+      if (display.innerText === "0") {
+        display.innerText = value;
+      } else {
+        display.innerText += value;
+      }
+    }
+
+    function clearDisplay() {
+      display.innerText = "0";
+    }
+
+    function calculate() {
+      try {
+        display.innerText = eval(display.innerText);
+      } catch {
+        display.innerText = "Error";
+      }
+    }
+  </script>
+
+</body>
+</html>
