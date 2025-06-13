@@ -1,0 +1,259 @@
+
+<html>
+<head>
+  
+  <title>Saregama Music</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: #d32f2f;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      user-select: none;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #b71c1c;
+      gap: 20px;
+      padding: 12px 0;
+    }
+    nav button {
+      background: transparent;
+      border: 2px solid #fff;
+      border-radius: 25px;
+      color: white;
+      font-weight: 600;
+      padding: 8px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      type: button;
+    }
+    nav button:hover,
+    nav button.active {
+      background-color: white;
+      color: #b71c1c;
+      font-weight: 700;
+    }
+    .page {
+      display: none;
+      flex-grow: 1;
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(211, 47, 47, 0.6);
+      background-color: #1f1f1f;
+    }
+    .page.active {
+      display: block;
+    }
+    h1 {
+      background: url('https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=900&q=80') no-repeat center center/cover;
+      height: 60vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 10px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      font-weight: 900;
+    }
+    p {
+      font-size: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+    .singers-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .singer-card {
+      background-color: #2a2a2a;
+      width: 220px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #d32f2f;
+      overflow: hidden;
+      text-align: center;
+      cursor: default;
+      transition: transform 0.3s ease;
+    }
+    .singer-card:hover {
+      transform: scale(1.05);
+    }
+    .singer-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .singer-card h3 {
+      margin: 12px 0 6px;
+      font-weight: 700;
+    }
+    .singer-card p {
+      margin: 0 12px 12px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .song-card {
+      background-color: #2a2a2a;
+      max-width: 700px;
+      margin: 15px auto;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px #d32f2f;
+    }
+    .song-card h4 {
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+    audio {
+      width: 100%;
+      border-radius: 6px;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Saregama Music</header>
+
+  <nav>
+    <button id="navHome" class="active" type="button">Home</button>
+    <button id="navSingers" type="button">Singers</button>
+    <button id="navSongs" type="button">Songs</button>
+  </nav>
+
+  <div id="home" class="page active">
+    <h1>Welcome to Saregama Music</h1>
+    <p>Discover the timeless melodies and legendary singers of Telugu music.</p>
+  </div>
+
+  <div id="singers" class="page">
+    <h2>Famous Singers</h2>
+    <div class="singers-list">
+      <div class="singer-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/P._Susheela.jpg" alt="P. Susheela" />
+        <h3>P. Susheela</h3>
+        <p>Legendary playback singer known for her melodious voice.</p>
+      </div>
+      <div class="singer-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/SPB_Singer.jpg" alt="S.P. Balasubrahmanyam" />
+        <h3>S.P. Balasubrahmanyam</h3>
+        <p>Iconic playback singer with thousands of hits in multiple languages.</p>
+      </div>
+      <div class="singer-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Shreya_Ghoshal_at_Times_Food_Beach_Festival_2017.jpg" alt="Shreya Ghoshal" />
+        <h3>Shreya Ghoshal</h3>
+        <p>Popular playback singer known for versatile singing skills.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="songs" class="page">
+    <h2>Popular Songs</h2>
+
+    <div class="song-card">
+      <h4>Naa Pranama - Khushi</h4>
+      <audio controls aria-label="Naa Pranama - Khushi">
+        <source src="https://www.example.com/audio/naa-pranama.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="song-card">
+      <h4>Vasantha Mullai - Gabbar Singh</h4>
+      <audio controls aria-label="Vasantha Mullai - Gabbar Singh">
+        <source src="https://www.example.com/audio/vasantha-mullai.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="song-card">
+      <h4>Akasamlo Oka Tara - Attarintiki Daredi</h4>
+      <audio controls aria-label="Akasamlo Oka Tara - Attarintiki Daredi">
+        <source src="https://www.example.com/audio/akasamlo-oka-tara.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="song-card">
+      <h4>Jagadananda Karaka - S.P. Balasubrahmanyam</h4>
+      <audio controls aria-label="Jagadananda Karaka - S.P. Balasubrahmanyam">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="song-card">
+      <h4>Chinukai Varame - P. Susheela</h4>
+      <audio controls aria-label="Chinukai Varame - P. Susheela">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="song-card">
+      <h4>Sunshine - Shreya Ghoshal</h4>
+      <audio controls aria-label="Sunshine - Shreya Ghoshal">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+
+  <script>
+    const navButtons = {
+      home: document.getElementById('navHome'),
+      singers: document.getElementById('navSingers'),
+      songs: document.getElementById('navSongs'),
+    };
+    const pages = {
+      home: document.getElementById('home'),
+      singers: document.getElementById('singers'),
+      songs: document.getElementById('songs'),
+    };
+
+    function activatePage(pageName) {
+      for (const key in navButtons) {
+        navButtons[key].classList.toggle('active', key === pageName);
+        pages[key].classList.toggle('active', key === pageName);
+      }
+    }
+
+    navButtons.home.addEventListener('click', () => activatePage('home'));
+    navButtons.singers.addEventListener('click', () => activatePage('singers'));
+    navButtons.songs.addEventListener('click', () => activatePage('songs'));
+
+    const audios = document.querySelectorAll('audio');
+    audios.forEach(audio => {
+      audio.addEventListener('play', () => {
+        audios.forEach(otherAudio => {
+          if (otherAudio !== audio) otherAudio.pause();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
