@@ -1,68 +1,156 @@
 <html>
 <head>
-  <title>Songs</title>
+  <title>🎵 Telugu Songs Player 🎵</title>
   <style>
     body {
-      background-color: #111;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 30px;
+      margin: 0;
+      background: #121212;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
     }
+
     h1 {
-      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #00fff7;
     }
+
+    .songs-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 900px;
+    }
+
     .song {
-      background-color: #222;
-      padding: 15px;
-      margin: 20px auto;
+      background-color: #1e1e1e;
       border-radius: 10px;
-      width: 90%;
-      max-width: 600px;
+      padding: 20px;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
+    .song h2 {
+      margin-bottom: 10px;
+      color: #00fff7;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #00fff7;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #00ccc0;
+    }
+
     a {
-      color: #00ffff;
+      margin-top: 30px;
+      color: #00fff7;
       text-decoration: none;
+      font-weight: bold;
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>🎵 Song List 🎵</h1>
 
-  <div class="song">
-    <h2>Hey Rangule</h2>
-    <a href="lyrics.html?song=heyrangule">Play ▶</a>
+  <h1>🎧 Click a Song to Play 🎧</h1>
+
+  <div class="songs-container">
+    <div class="song" id="heyrangule">
+      <h2>Hey Rangule</h2>
+      <button onclick="playAudio('heyrangule')">Play ▶</button>
+      <audio id="audio-heyrangule" src="heyrangule.mp3"></audio>
+    </div>
+
+    <div class="song" id="premalo">
+      <h2>Premalo</h2>
+      <button onclick="playAudio('premalo')">Play ▶</button>
+      <audio id="audio-premalo" src="premalo.mp3"></audio>
+    </div>
+
+    <div class="song" id="godari">
+      <h2>Godari Gattu</h2>
+      <button onclick="playAudio('godari')">Play ▶</button>
+      <audio id="audio-godari" src="godari_gattu.mp3"></audio>
+    </div>
+
+    <div class="song" id="chiru">
+      <h2>Chiru Chiru</h2>
+      <button onclick="playAudio('chiru')">Play ▶</button>
+      <audio id="audio-chiru" src="chiru_chiru.mp3"></audio>
+    </div>
+
+    <div class="song" id="chali">
+      <h2>Chali Chaliga</h2>
+      <button onclick="playAudio('chali')">Play ▶</button>
+      <audio id="audio-chali" src="chali_chaliga.mp3"></audio>
+    </div>
+
+    <div class="song" id="gaaju">
+      <h2>Gaaju Bomma</h2>
+      <button onclick="playAudio('gaaju')">Play ▶</button>
+      <audio id="audio-gaaju" src="gaaju_bomma.mp3"></audio>
+    </div>
+
+    <div class="song" id="kuchi">
+      <h2>Kuchi Maruthampatti</h2>
+      <button onclick="playAudio('kuchi')">Play ▶</button>
+      <audio id="audio-kuchi" src="kuchi_maruthampatti.mp3"></audio>
+    </div>
   </div>
 
-  <div class="song">
-    <h2>Premalo</h2>
-    <a href="lyrics.html?song=premalo">Play ▶</a>
-  </div>
+  <a href="songs.html">⬅ Back to Songs</a>
+  <a href="index.html">🏠 Home</a>
 
-  <div class="song">
-    <h2>Godari Gattu</h2>
-    <a href="lyrics.html?song=godari">Play ▶</a>
-  </div>
+  <script>
+    function playAudio(songId) {
+      const allAudios = document.querySelectorAll("audio");
+      allAudios.forEach(audio => {
+        if (!audio.id.endsWith(songId)) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });
 
-  <div class="song">
-    <h2>Chiru Chiru</h2>
-    <a href="lyrics.html?song=chiru">Play ▶</a>
-  </div>
+      const currentAudio = document.getElementById("audio-" + songId);
+      if (currentAudio.paused) {
+        currentAudio.play();
+      } else {
+        currentAudio.pause();
+      }
+    }
 
-  <div class="song">
-    <h2>Chali Chaliga</h2>
-    <a href="lyrics.html?song=chali">Play ▶</a>
-  </div>
+   
+    const params = new URLSearchParams(window.location.search);
+    const songId = params.get("song");
+    if (songId) {
+      const songDiv = document.getElementById(songId);
+      if (songDiv) {
+        songDiv.scrollIntoView({ behavior: "smooth", block: "center" });
+        playAudio(songId);
+      }
+    }
+  </script>
 
-  <div class="song">
-    <h2>Gaaju Bomma</h2>
-    <a href="lyrics.html?song=gaaju">Play ▶</a>
-  </div>
-
-  <div class="song">
-    <h2>Kuchi Maruthampatti</h2>
-    <a href="lyrics.html?song=kuchi">Play ▶</a>
-  </div>
-
-  <a href="index.html">⬅ Back to Home</a>
 </body>
 </html>
